@@ -140,7 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\DE\MAI_Vol_2\cec20_test_func.cpp" />
+    <ClCompile Include="cec20_test_func.cpp" />
     <ClCompile Include="DE.cpp" />
     <ClCompile Include="HeuristicCSVGenerator.cpp" />
     <ClCompile Include="JDE.cpp" />
