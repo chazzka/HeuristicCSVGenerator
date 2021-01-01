@@ -338,3 +338,23 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/HeuristicCSVGenerator/SOMARotatedSchwefel20d.csv
+/HeuristicCSVGenerator/SOMARotatedSchwefel10d.csv
+/HeuristicCSVGenerator/SOMARosenbrock20d.csv
+/HeuristicCSVGenerator/SOMARosenbrock10d.csv
+/HeuristicCSVGenerator/SOMALunacek20d.csv
+/HeuristicCSVGenerator/SOMALunacek10d.csv
+/HeuristicCSVGenerator/SOMAHybridOneTwo20d.csv
+/HeuristicCSVGenerator/SOMAHybridOneTwo10d.csv
+/HeuristicCSVGenerator/SOMAHybridOneThree20d.csv
+/HeuristicCSVGenerator/SOMAHybridOneThree10d.csv
+/HeuristicCSVGenerator/SOMAHybridOne20d.csv
+/HeuristicCSVGenerator/SOMAHybridOne10d.csv
+/HeuristicCSVGenerator/SOMACompositionTwo20d.csv
+/HeuristicCSVGenerator/SOMACompositionTwo10d.csv
+/HeuristicCSVGenerator/SOMACompositionThree20d.csv
+/HeuristicCSVGenerator/SOMACompositionThree10d.csv
+/HeuristicCSVGenerator/SOMACompositionOne20d.csv
+/HeuristicCSVGenerator/SOMACompositionOne10d.csv
+/HeuristicCSVGenerator/SOMABendCigar20d.csv
+/HeuristicCSVGenerator/SOMABendCigar10d.csv

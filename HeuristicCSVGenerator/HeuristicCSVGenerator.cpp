@@ -4,7 +4,18 @@
 #include <string>
 #include <fstream>
 
+//ZDE SI VYBER FUNCKI  (SOMA, JDE)
+#define SOMA
+//zbytek se děje automaticky, můžeš jít spát
+
+
+#ifdef SOMA
 #include "SOMA.cpp"
+#endif // SOMA
+
+#ifdef JDE
+#include "JDE.cpp"
+#endif // JDE
 
 
 using namespace std;
@@ -41,22 +52,47 @@ void makeCSVfile(string filename, std::vector<std::vector<result>> result)
 }
 
 
-int dimensionSize = 10;
+int dimensionSize = 0;
 const int runs = 30;
 
-
-//TODO: paralelismus funguje nanic
 int main()
 {
 	srand((unsigned)time(0));
 
+
+	//10 D
+	dimensionSize = 10;
 	std::vector<string> names = { "BendCigar", "RotatedSchwefel", "Lunacek", "Rosenbrock", "HybridOne", "HybridOneTwo", "HybridOneThree", "CompositionOne", "CompositionTwo", "CompositionThree" };
 	for (int funkce = 1; funkce <= 10; funkce++) {
 		std::vector<std::vector<result>> csv;
 		for (int j = 0; j < runs; j++) {
 			csv.push_back(run(dimensionSize, funkce, BOUNDARY));
 		}
-		makeCSVfile(names[funkce-1], csv);
+#ifdef SOMA
+		makeCSVfile("SOMA" + names[funkce - 1] + to_string(dimensionSize) + "d", csv);
+#endif // SOMA
+#ifdef JDE
+		makeCSVfile("JDE" + names[funkce - 1] + to_string(dimensionSize) + "d", csv);
+#endif // JDE
+
+
+	}
+
+	//20 D
+	dimensionSize = 20;
+	for (int funkce = 1; funkce <= 10; funkce++) {
+		std::vector<std::vector<result>> csv;
+		for (int j = 0; j < runs; j++) {
+			csv.push_back(run(dimensionSize, funkce, BOUNDARY));
+		}
+#ifdef SOMA
+		makeCSVfile("SOMA" + names[funkce - 1] + to_string(dimensionSize) + "d", csv);
+#endif // SOMA
+#ifdef JDE
+		makeCSVfile("JDE" + names[funkce - 1] + to_string(dimensionSize) + "d", csv);
+#endif // JDE
+
+
 	}
 
 	return 0;
