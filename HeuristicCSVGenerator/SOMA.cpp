@@ -6,6 +6,7 @@ using namespace std;
 
 struct jedinec
 {
+    int id;
     std::vector<double> position;
     double cost;
 };
@@ -39,7 +40,6 @@ inline ohodnocenaPopulace getLeader(vector<jedinec> population, int testFunction
         //        double actual_cost = first_dejong(population[i].position);
         double actual_cost = 0;
         cec20_test_func(population[i].position.data(), &actual_cost, dimension, 1, testFunction);
-
         population[i].cost = actual_cost;
         if (actual_cost < best_cost) {
             best_cost = actual_cost;
@@ -104,20 +104,20 @@ vector<result> run(int dimension, int testFunction, int boundary);
 
 //nedojede do 50k, protože je omezeny migracemi - šenky říkal že to do konce nedojde
 inline vector<result> run(int dimension, int testFunction, int boundary) {
-            
+    
     vector<result> best_results;
     double t = 0;
     int path_length = 3;
     double step = 0.33;
     double prt = 0.3;
     int d = dimension;
-    int pop_size = 3 * d;
+    int pop_size = 50; //dycky pade
     int pocet_accepted_fezu = 5000 * d;
     int migrace = 50;
 
     int konec = 0;
     int fezcounter = 0;
-
+    //22050 fezů
     vector<jedinec> populace;
     for (int i = 0; i < pop_size; i++) {
 
@@ -125,7 +125,7 @@ inline vector<result> run(int dimension, int testFunction, int boundary) {
         for (double prvek : generateRandom(d, -boundary, boundary)) {
             pozice.push_back(prvek);
         }
-        jedinec tmpJedinec = { pozice, 0 };
+        jedinec tmpJedinec = { i, pozice, 0 };
         populace.push_back(tmpJedinec);
     }
 
@@ -134,19 +134,24 @@ inline vector<result> run(int dimension, int testFunction, int boundary) {
     populace = resPo.populace;
 
     //migrace
+    
     for (int i_m = 0; i_m < migrace; i_m++) {
-        jedinec leader_of_population = leader;
+        jedinec leader_of_population = leader;       
         for (jedinec jedinec : populace) {
             if (konec == 1) {
                 cout << "konec" << endl;
                 continue;
             }
-
-            if (&jedinec != &leader_of_population) {
+                                  
+            if (jedinec.id != leader_of_population.id) {
                 vector<double> potencial_position = jedinec.position;
                 t = 0;
                 double actual_cost = jedinec.cost;
-                while (t < path_length) {
+                int countera = 0;
+                //tady jsem to o 0.2 zmenšil aby to jelo jen 9x a ne 10x
+                while (t < path_length-0.2) {
+                    countera++;
+                    
                     vector<double> PRTVector = generateRandom(dimension, 0, 1);
 
                     for (int i_p = 0; i_p < PRTVector.size(); i_p++) {
@@ -198,6 +203,8 @@ inline vector<result> run(int dimension, int testFunction, int boundary) {
                     }
                     t += step;
                 }
+                //cout << "ahoj" << endl;
+                //cout << countera << endl;
 
             }
             leader = leader_of_population;

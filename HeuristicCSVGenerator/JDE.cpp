@@ -60,7 +60,7 @@ vector<result> run(int dimension, int testFunction, int boundary);
 inline vector<result> run(int dimension, int testFunction, int boundary) {
 
 	int d = dimension;
-	int P = 10 * d;
+	int P = 50; //teď už je to OK
 
 	//helper vars
 	int fezCounter = 0;
